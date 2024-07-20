@@ -21,10 +21,11 @@ public class InspirationalQuoteController {
     }
 
     @PostMapping(path = "/create")
-    public @ResponseBody String create(@RequestParam String quote
-            , @RequestParam String author) {
+//    public @ResponseBody String create(@RequestBody String quote
+//            , @RequestBody String author) {
+        public @ResponseBody String create(@RequestBody  InspirationalQuote inspirationalQuote) {
 
-        InspirationalQuote inspirationalQuote = new InspirationalQuote(quote, author, true);
+       // InspirationalQuote inspirationalQuote = new InspirationalQuote(quote, author, true);
         inspirationalQuoteService.create(inspirationalQuote);
         return "Saved";
     }
