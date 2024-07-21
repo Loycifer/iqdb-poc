@@ -21,11 +21,8 @@ public class InspirationalQuoteController {
     }
 
     @PostMapping(path = "/create")
-//    public @ResponseBody String create(@RequestBody String quote
-//            , @RequestBody String author) {
-        public @ResponseBody String create(@RequestBody  InspirationalQuote inspirationalQuote) {
-
-       // InspirationalQuote inspirationalQuote = new InspirationalQuote(quote, author, true);
+    public @ResponseBody String create(@RequestBody InspirationalQuote inspirationalQuote) {
+        inspirationalQuote.setCustom(true);
         inspirationalQuoteService.create(inspirationalQuote);
         return "Saved";
     }
@@ -37,12 +34,9 @@ public class InspirationalQuoteController {
 
     @PostMapping(path = "/random")
     public @ResponseBody InspirationalQuote getRandom(@RequestBody getRandomForm getRandomForm) {
-
-
         InspirationalQuote quote = inspirationalQuoteService.getRandom(getRandomForm.alreadySeen);
         if (quote == null) {
             throw new ResponseStatusException(HttpStatus.NO_CONTENT);
-
         }
         return quote;
     }
