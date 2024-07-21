@@ -31,7 +31,7 @@ public class InitService {
                 .withCSVParser(new CSVParserBuilder()
                         .withSeparator(';')
                         .build()
-                ).build();) {
+                ).build()) {
             String[] values = null;
             while ((values = csvReader.readNext()) != null) {
                 if (!Objects.equals(values[0], "")) {

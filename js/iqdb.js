@@ -3,18 +3,18 @@ import {InspirationalQuoteHandler} from "./inspirationalQuotehandler";
 import {AlertBox} from "./alertBox";
 import {FormHandler} from "./formHandler";
 
-function fieldTrimmer(elementId) {
+function formFieldTrimmer(elementId) {
     document.getElementById(elementId).addEventListener("focusout", (event) => {
         event.target.value = event.target.value.trim()
     });
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
-    fieldTrimmer("quote");
-    fieldTrimmer("author");
+    formFieldTrimmer("quote");
+    formFieldTrimmer("author");
 
     const alertBox = new AlertBox("alert-display", "alert-box-text", "alert-button");
-    const inspirationalQuoteHandler = new InspirationalQuoteHandler("quote-container", "toggle-container");
+    const inspirationalQuoteHandler = new InspirationalQuoteHandler("quote-container", "toggle-container", "next-button");
     const toggler = new Toggler(inspirationalQuoteHandler);
     const formHandler = new FormHandler(alertBox);
 

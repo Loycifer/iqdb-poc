@@ -13,7 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 @Controller
 @RequestMapping(path = "/inspirational-quote")
 public class InspirationalQuoteController {
-    private InspirationalQuoteService inspirationalQuoteService;
+    private final InspirationalQuoteService inspirationalQuoteService;
 
     @Autowired
     public InspirationalQuoteController(InspirationalQuoteService inspirationalQuoteService) {

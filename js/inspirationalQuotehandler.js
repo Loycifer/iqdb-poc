@@ -7,6 +7,7 @@ export class InspirationalQuoteHandler {
     #introFinished = false;
     #targetElement;
     #toggleContainer;
+    #nextButton
 
     #introText = [
         "Feeling down?",
@@ -16,9 +17,10 @@ export class InspirationalQuoteHandler {
         "Here they come...",
     ]
 
-    constructor(quoteContainerId, toggleContainerId) {
+    constructor(quoteContainerId, toggleContainerId, nextButtonId) {
         this.#targetElement = document.getElementById(quoteContainerId);
         this.#toggleContainer = document.getElementById(toggleContainerId);
+        this.#nextButton = document.getElementById(nextButtonId);
         this.intro();
     }
 
@@ -43,10 +45,12 @@ export class InspirationalQuoteHandler {
 
     autoAdvanceOn() {
         this.#autoAdvanceTimer = setInterval(this.getNextQuote, 7000);
+        this.#nextButton.classList.add("hidden");
     }
 
     autoAdvanceOff() {
         clearInterval(this.#autoAdvanceTimer);
+        this.#nextButton.classList.remove("hidden");
     }
 
 
@@ -92,7 +96,6 @@ export class InspirationalQuoteHandler {
 
             if (status === 204) {
                 this.#alreadySeen.splice(0, this.#alreadySeen.length);
-
                 this.displayText("I'm all out of wisdom.  Add some of your own quotes below!")
             }
 

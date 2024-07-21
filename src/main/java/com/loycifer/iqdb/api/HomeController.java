@@ -11,6 +11,6 @@ public class HomeController {
     @GetMapping("/")
     public String index(@RequestParam(name="name", required=false, defaultValue="Dolly") String name, Model model) {
         model.addAttribute("name", name);
-        return "hello";
+        return "iqdb";
     }
 }

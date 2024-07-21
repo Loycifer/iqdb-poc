@@ -24,8 +24,8 @@ export class FormHandler {
 
 
             if (status === 200) {
-                form.reset();
                 this.#alertBox.showMessage("Quote successfully saved! It belongs to me now.")
+                form.reset();
             } else {
                 this.#alertBox.showMessage("Something went wrong.  It's not my fault.")
             }
