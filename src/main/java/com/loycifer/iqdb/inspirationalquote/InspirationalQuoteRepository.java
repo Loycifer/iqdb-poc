@@ -1,6 +1,5 @@
-package com.loycifer.iqdb.repository;
+package com.loycifer.iqdb.inspirationalquote;
 
-import com.loycifer.iqdb.model.InspirationalQuote;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;

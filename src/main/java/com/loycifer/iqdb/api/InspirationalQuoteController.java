@@ -1,7 +1,7 @@
 package com.loycifer.iqdb.api;
 
-import com.loycifer.iqdb.model.InspirationalQuote;
-import com.loycifer.iqdb.service.InspirationalQuoteService;
+import com.loycifer.iqdb.inspirationalquote.InspirationalQuote;
+import com.loycifer.iqdb.inspirationalquote.InspirationalQuoteService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;

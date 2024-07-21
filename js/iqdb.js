@@ -1,45 +1,7 @@
-import {handleToggleClick} from "./toggler";
+import {Toggler} from "./toggler";
 import {InspirationalQuoteHandler} from "./inspirationalQuotehandler";
-
-
-//const autoadvanceTimer = setInterval(getData, 10000, alreadySeen);
-
-
-
-async function handleSubmit(event) {
-    console.log("SUBMITTING")
-    event.preventDefault();
-    const form = event.currentTarget;
-    const formData = new FormData(form);
-    const plainFormData = Object.fromEntries(formData.entries());
-    const formDataJsonString = JSON.stringify(plainFormData);
-    console.log("DATA :  " + formDataJsonString)
-
-    const url = "/inspirational-quote/create";
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: formDataJsonString,
-        });
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-        const status = response.status;
-
-
-        if (status === 200) {
-            console.log("saved");
-
-        }
-
-    } catch (error) {
-        console.error(error.message);
-    }
-}
+import {AlertBox} from "./alertBox";
+import {FormHandler} from "./formHandler";
 
 function fieldTrimmer(elementId) {
     document.getElementById(elementId).addEventListener("focusout", (event) => {
@@ -50,9 +12,13 @@ function fieldTrimmer(elementId) {
 document.addEventListener("DOMContentLoaded", (event) => {
     fieldTrimmer("quote");
     fieldTrimmer("author");
-    const inspirationalQuoteHandler = new InspirationalQuoteHandler();
 
-    document.getElementById("auto-advance-toggle").addEventListener("change", handleToggleClick);
+    const alertBox = new AlertBox("alert-display", "alert-box-text", "alert-button");
+    const inspirationalQuoteHandler = new InspirationalQuoteHandler("quote-container", "toggle-container");
+    const toggler = new Toggler(inspirationalQuoteHandler);
+    const formHandler = new FormHandler(alertBox);
+
+    document.getElementById("auto-advance-toggle").addEventListener("change", toggler.handleToggleClick);
     document.getElementById("next-button").addEventListener("click", inspirationalQuoteHandler.getNextQuote);
-    document.getElementById("new-quote-form").addEventListener("submit", handleSubmit);
+    document.getElementById("new-quote-form").addEventListener("submit", formHandler.handleSubmit);
 });

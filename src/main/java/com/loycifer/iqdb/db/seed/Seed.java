@@ -1,6 +1,6 @@
 package com.loycifer.iqdb.db.seed;
 
-import com.loycifer.iqdb.model.InspirationalQuote;
+import com.loycifer.iqdb.inspirationalquote.InspirationalQuote;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Transient;

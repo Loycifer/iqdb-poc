@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <link rel="stylesheet" href="style.css">
     <title>Getting Started: Serving Web Content</title>
@@ -7,25 +7,41 @@
     <script src="iqdb.js"></script>
 </head>
 <body>
-<!--<p th:text="|Hello, ${name}!|"/>-->
-<div id="toggle-container">
+<div id="toggle-container" class="hidden">
+    <span id="auto-advance-text">Auto-advance</span>
     <label class="toggle">
         <input type="checkbox" id="auto-advance-toggle">
         <span class="slider"></span>
-    </label><span id="auto-advance-text">Auto-advance <span id="toggle-indicator-text">off</span></span>
+    </label>
 </div>
-<div id="quoteContainer">
-
+<div id="quote-container" class="centering-div">
 </div>
-<button type="button" id="next-button">Next</button>
+<div class="centering-div">
+    <button class="button" type="button" id="next-button">Next</button>
+</div>
+<br><br>
 <hr>
-<form id="new-quote-form">
-    <label for="quote">Quote:</label><br>
-    <textarea id="quote" name="quote" rows="4"  cols="100" required></textarea><br>
-    <label for="author">Author:</label><br>
-    <input type="text" id="author" name="author" value="" required><br><br>
-    <input type="submit" value="Submit">
-</form>
+<br><br>
+<div id="form-area">
+    <h3>Add your own! Impress you friends!</h3>
+    <form id="new-quote-form">
+        <label for="quote">Quote:</label><br>
+        <textarea id="quote" name="quote" rows="4" cols="100" required></textarea><br>
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author" value="" required><br><br>
+        <input class="button" type="submit" value="Submit">
+    </form>
+</div>
+
+<div id="alert-display" class="centering-div hidden">
+    <div id="alert-box">
+        <span id="alert-box-text">Succesfully saved! It belongs to me now.</span>
+        <br><br>
+        <div class="centering-div">
+            <button class="button" type="button" id="alert-button">Understood</button>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

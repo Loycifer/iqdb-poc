@@ -1,7 +1,5 @@
-package com.loycifer.iqdb.service;
+package com.loycifer.iqdb.inspirationalquote;
 
-import com.loycifer.iqdb.model.InspirationalQuote;
-import com.loycifer.iqdb.repository.InspirationalQuoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

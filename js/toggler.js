@@ -1,7 +1,16 @@
-export function handleToggleClick() {
-    if (this.checked) {
-        document.getElementById("toggle-indicator-text").innerText = "on";
-    } else {
-        document.getElementById("toggle-indicator-text").innerText = "off";
+export class Toggler {
+
+    #inspirationalQuoteHandler;
+
+    constructor(inspirationalQuoteHandler) {
+        this.#inspirationalQuoteHandler = inspirationalQuoteHandler;
+    }
+
+    handleToggleClick = (event) => {
+        if (event.target.checked) {
+            this.#inspirationalQuoteHandler.autoAdvanceOn();
+        } else {
+            this.#inspirationalQuoteHandler.autoAdvanceOff();
+        }
     }
 }

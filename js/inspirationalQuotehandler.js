@@ -4,7 +4,9 @@ export class InspirationalQuoteHandler {
     #alreadySeen = [];
     #autoAdvanceTimer;
     #introTimer;
+    #introFinished = false;
     #targetElement;
+    #toggleContainer;
 
     #introText = [
         "Feeling down?",
@@ -14,8 +16,9 @@ export class InspirationalQuoteHandler {
         "Here they come...",
     ]
 
-    constructor() {
-        this.#targetElement = document.getElementById("quoteContainer");
+    constructor(quoteContainerId, toggleContainerId) {
+        this.#targetElement = document.getElementById(quoteContainerId);
+        this.#toggleContainer = document.getElementById(toggleContainerId);
         this.intro();
     }
 
@@ -26,11 +29,26 @@ export class InspirationalQuoteHandler {
 
     printIntroText = () => {
         if (this.#introText.length === 0) {
-            clearInterval(this.#introTimer)
+            this.finishIntro();
             this.getNextQuote();
         }
         this.displayText(this.#introText.shift())
     }
+
+    finishIntro() {
+        this.#toggleContainer.classList.remove("hidden")
+        this.#introFinished = true;
+        clearInterval(this.#introTimer);
+    }
+
+    autoAdvanceOn() {
+        this.#autoAdvanceTimer = setInterval(this.getNextQuote, 7000);
+    }
+
+    autoAdvanceOff() {
+        clearInterval(this.#autoAdvanceTimer);
+    }
+
 
     #resetAnimation() {
         this.#targetElement.classList.remove("fade-in-text");
@@ -39,7 +57,7 @@ export class InspirationalQuoteHandler {
     }
 
     #displayQuote(jsonResponse) {
-        this.#targetElement.innerText = `"${jsonResponse.quote}" ~${jsonResponse.author} `;
+        this.#targetElement.innerText = `"${jsonResponse.quote}" ~ ${jsonResponse.author} `;
     }
 
     #handleResponse(jsonResponse) {
@@ -54,6 +72,9 @@ export class InspirationalQuoteHandler {
     }
 
     getNextQuote = async () => {
+        if (!this.#introFinished) {
+            this.finishIntro();
+        }
         const url = "/inspirational-quote/random";
         const alreadySeen = this.#alreadySeen;
         const alreadySeenJSON = JSON.stringify({"alreadySeen": alreadySeen})
@@ -68,6 +89,13 @@ export class InspirationalQuoteHandler {
                 const json = await response.json();
                 this.#handleResponse(json)
             }
+
+            if (status === 204) {
+                this.#alreadySeen.splice(0, this.#alreadySeen.length);
+
+                this.displayText("I'm all out of wisdom.  Add some of your own quotes below!")
+            }
+
 
         } catch (error) {
             console.error(error.message);

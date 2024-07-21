@@ -1,31 +1,21 @@
-package com.loycifer.iqdb.model;
+package com.loycifer.iqdb.inspirationalquote;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.Accessors;
 
+@Setter
+@Getter
 @Entity
 public class InspirationalQuote {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter
-    @Setter
     private Long id;
 
-    @Getter
-    @Setter
     private String quote;
 
-    @Getter
-    @Setter
     private String author;
 
-    @Getter
-    @Setter
     private boolean isCustom;
 
     public InspirationalQuote() {
